@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from home.models import Users, Profile, Meals, Feedback
+from home.models.users import Users
+from home.models.profile import Profile
+from home.models.meals import Meals
+from home.models.feedback import Feedback
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

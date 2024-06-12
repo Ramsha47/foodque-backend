@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Users,Meals,Profile,Feedback
+from .models.users import Users
+from .models.profile import Profile
+from .models.meals import Meals
+from .models.feedback import Feedback
 
 # Register your models here.
 admin.site.register(Users)
