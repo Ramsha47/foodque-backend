@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include,path
 from home.views.RegisteredUser_list_view import RegisteredUsers_list
 from home.views.UserProfile_view import UsersProfile_list
+from home.views.UserProfile_view import getUserProfile
 from home.views.Meals_view import Meals_list
 from home.views.Feedback_view import Feedback_list
 from home.views.signup_view import signup_user
@@ -33,4 +34,5 @@ urlpatterns = [
      path('register/', signup_user, name='signup'),
      path('login/', login_user, name='login'),
      path('create-profile/', create_profile, name='create_profile'),
+     path('get-user-profile/', getUserProfile, name='getUserProfile'),
 ]

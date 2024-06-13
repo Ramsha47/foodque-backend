@@ -18,7 +18,7 @@ def login_user(request):
     if user.password == password:  # If passwords are hashed, use check_password(password, user.password)
         request.session['user_id'] = user.id
         request.session.save()  # Manually save the session
-        return Response({'message': 'Login successful','id': user.id}, status=status.HTTP_201_CREATED)
+        return Response({'message': 'Login successful','user': user.id}, status=status.HTTP_201_CREATED)
         
     else:
         return Response({'message': 'Invalid email or password'}, status=status.HTTP_200_OK) 

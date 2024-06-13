@@ -17,3 +17,14 @@ def UsersProfile_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def getUserProfile(request):
+    user_id = request.GET.get('user_id')  # Get user ID from the query parameters
+    if user_id:
+        usersprofile = Profile.objects.filter(user=user_id)
+        serializer = ProfileSerializer(usersprofile, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    else:
+        return Response({'error': 'User ID not provided'}, status=status.HTTP_400_BAD_REQUEST)
