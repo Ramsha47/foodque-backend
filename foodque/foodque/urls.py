@@ -24,9 +24,12 @@ from home.views.Feedback_view import Feedback_list
 from home.views.signup_view import signup_user
 from home.views.loginuser_view import login_user
 from home.views.createprofile_view import create_profile
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
      path('admin/', admin.site.urls),
+     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),    
      path('Users/',RegisteredUsers_list),
      path('Profile/',UsersProfile_list),
      path('Meals/',Meals_list),

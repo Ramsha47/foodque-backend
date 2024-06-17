@@ -1,11 +1,13 @@
 from home.models.profile import Profile
 from home.api.serializers import ProfileSerializer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from django.http import HttpResponse, JsonResponse
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def UsersProfile_list(request):
     if request.method == 'GET':
         usersprofile = Profile.objects.all()
@@ -20,6 +22,7 @@ def UsersProfile_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getUserProfile(request):
     user_id = request.GET.get('user_id')  # Get user ID from the query parameters
     if user_id:
