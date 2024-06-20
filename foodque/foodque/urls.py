@@ -21,6 +21,7 @@ from home.views.UserProfile_view import UsersProfile_list
 from home.views.UserProfile_view import getUserProfile
 from home.views.Meals_view import Meals_list
 from home.views.Feedback_view import Feedback_list
+from home.views.recommendation_view import get_recommendations
 from home.views.signup_view import signup_user
 from home.views.loginuser_view import login_user
 from home.views.createprofile_view import create_profile
@@ -36,6 +37,7 @@ urlpatterns = [
      path('Feedback/',Feedback_list),
      path('register/', signup_user, name='signup'),
      path('login/', login_user, name='login'),
+     path('get-recommendations/', get_recommendations, name='get_recommendations'),
      path('create-profile/', create_profile, name='create_profile'),
      path('get-user-profile/', getUserProfile, name='getUserProfile'),
 ]
