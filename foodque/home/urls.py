@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path,include
 from . import views  # Import views from the same directory
 
 urlpatterns = [
-    path('', views.index, name='index'),  # Define the URL pattern for the home view
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
