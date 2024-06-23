@@ -3,12 +3,14 @@ from home.models.users import Users
 from home.models.profile import Profile
 from home.models.meals import Meals
 from home.models.feedback import Feedback
+from djoser.serializers import UserCreateSerializer
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Users
-        managed = True
-        fields = ['id', 'username', 'useremail', 'password']
+# User = get_user_model()
+
+class UserSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model=Users
+        fields=('id', 'email', 'name', 'password')
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:

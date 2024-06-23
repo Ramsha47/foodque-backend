@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 from datetime import timedelta # import this library top of the settings.py file
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
+     'home',
     'corsheaders',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +62,48 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    
 }
+# SIMPLE_JWT = {
+#    'AUTH_HEADER_TYPES': ('JWT',),
+# }
+# Email Configuration
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ramshaqaiser4@gmail.com'
+EMAIL_HOST_PASSWORD = 'zboy qkpq nxie rxuz' 
+EMAIL_USE_TLS = True
+
+
+
+# Djoser Settings
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'USER_CREATE_PASSWORD_RETYPE':True,
+    'ACTIVATION_URL':'/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL':True,
+    'SEND_CONFIRMATION_EMAIL':True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
+    'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+    'TOKEN_MODEL': None,       # To Delete User Must Set it to None
+    'SERIALIZERS':{
+        'user_create': 'home.api.serializers.UserCreateSerializer',
+        'user': 'home.api.serializers.UserCreateSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    },
+    'EMAIL': {
+        'activation': 'djoser.email.ActivationEmail',
+        'confirmation': 'djoser.email.ConfirmationEmail',
+        'password_reset': 'djoser.email.PasswordResetEmail',
+        'password_changed_confirmation': 'djoser.email.PasswordChangedConfirmationEmail',
+    },
+
+
+}
+
 
 # SIMPLE_JWT = {
 #     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
@@ -102,7 +144,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # Database engine
         'NAME':  'postgres',                         # Database name
-        'USER':   'postgres',                            # Database user
+        'USER':   'postgres',                         # Database user
         'PASSWORD': '1234',                         # Database password
         'HOST': 'localhost',                        # Database host
         'PORT': '5432',                             # Database port (default: 5432)
@@ -151,3 +193,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+

@@ -29,8 +29,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
      path('admin/', admin.site.urls),
-     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),    
+    #  path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    #  path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),    
      path('Users/',RegisteredUsers_list),
      path('Profile/',UsersProfile_list),
      path('Meals/',Meals_list),
@@ -40,4 +40,6 @@ urlpatterns = [
      path('get-recommendations/', get_recommendations, name='get_recommendations'),
      path('create-profile/', create_profile, name='create_profile'),
      path('get-user-profile/', getUserProfile, name='getUserProfile'),
+     path('api/', include('home.urls')),
+     
 ]
